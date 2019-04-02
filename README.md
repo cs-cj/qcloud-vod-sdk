@@ -37,3 +37,6 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## Code of Conduct
 
 Everyone interacting in the Qcloud::Vod::Sdk project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/qcloud-vod-sdk/blob/master/CODE_OF_CONDUCT.md).
+
+## Document
++ [VOD RESTful API文档](https://cloud.tencent.com/document/product/266/31752)
