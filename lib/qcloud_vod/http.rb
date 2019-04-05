@@ -1,5 +1,7 @@
 require 'httparty'
 require 'httmultiparty'
+require 'addressable/uri'
+require 'qcloud_vod/error'
 module QcloudVod
   class Http
     include HTTParty
@@ -31,6 +33,40 @@ module QcloudVod
       append_options!(options, url)
 
       wrap(self.class.__send__(verb.downcase, url, options))
+    end
+
+    def wrap(response)
+      if response.code == 200 && response.parsed_response['code'] == 0
+        response
+      else
+        fail RequestError, response
+      end
+    end
+
+    def append_headers!(headers, _verb, body, _options)
+      append_default_headers!(headers)
+      append_body_headers!(headers, body)
+    end
+
+    def append_options!(options, url)
+      options.merge!(uri_adapter: Addressable::URI)
+      # if config.ssl_ca_file
+      #   options.merge!(ssl_ca_file: config.ssl_ca_file)
+      # elsif url.start_with?('https://')
+      #   options.merge!(verify_peer: true)
+      # end
+    end
+
+    def append_default_headers!(headers)
+      headers.merge!(default_headers)
+    end
+
+    def append_body_headers!(headers, body)
+      headers.merge!('Content-Length' => Utils.content_size(body).to_s) if body
+    end
+
+    def default_headers
+     {}
     end
 
   end

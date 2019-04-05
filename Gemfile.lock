@@ -2,12 +2,15 @@ PATH
   remote: .
   specs:
     qcloud-vod-sdk (0.1.1)
+      addressable
       httmultiparty
       httparty
 
 GEM
   remote: https://gems.ruby-china.com/
   specs:
+    addressable (2.6.0)
+      public_suffix (>= 2.0.2, < 4.0)
     httmultiparty (0.3.16)
       httparty (>= 0.7.3)
       mimemagic
@@ -21,6 +24,7 @@ GEM
     mimemagic (0.3.3)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    public_suffix (3.0.3)
     rake (10.5.0)
 
 PLATFORMS

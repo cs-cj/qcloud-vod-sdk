@@ -2,9 +2,12 @@ require 'qcloud_vod/version'
 require 'qcloud_vod/configuration'
 require 'qcloud_vod/sign'
 require 'qcloud_vod/http'
-require 'qcloud_vod/api/v1/task'
+require 'qcloud_vod/api/v1/t_task'
 module QcloudVod
+
   class << self
+    include Api::V1::TTask
+
     def configure
       @configuration ||= Configuration.new
       yield @configuration

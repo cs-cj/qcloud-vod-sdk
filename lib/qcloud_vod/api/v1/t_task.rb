@@ -1,7 +1,8 @@
 module QcloudVod
   module Api
     module V1
-      class Task
+      module TTask
+
         def describe_tasks
           sign = authorization.get_value
           options = { Action: 'DescribeTasks' }
