@@ -21,7 +21,7 @@ module QcloudVod
     def sign_base(expireTime)
       src_str = "secretId=#{secret_id}&currentTimeStamp=#{current_time}&expireTime=#{expireTime}&random=#{rdm}"
 
-      sign = Base64.encode64("#{OpenSSL::HMAC.digest('sha1', secret_key, src_str)}#{src_str}").delete("\n").strip
+      Base64.encode64("#{OpenSSL::HMAC.digest('sha1', secret_key, src_str)}#{src_str}").delete("\n").strip
     end
 
     def secret_id
@@ -33,7 +33,8 @@ module QcloudVod
     end
 
     def current_time
-      Time.now.to_i
+      # Time.now.to_i
+      1554463825
     end
 
     def rdm

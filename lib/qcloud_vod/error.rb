@@ -7,9 +7,10 @@ module QcloudVod
     attr_reader :origin_response
 
     def initialize(response)
-      if response.parsed_response.key?('code')
-        @code = response.parsed_response['code']
-        @message = response.parsed_response['message']
+      p response
+      if response.parsed_response.key?('Code')
+        @code = response.parsed_response['Code']
+        @message = response.parsed_response['Message']
       end
       @origin_response = response
       super("API ERROR Code=#{@code}, Message=#{@message}")
