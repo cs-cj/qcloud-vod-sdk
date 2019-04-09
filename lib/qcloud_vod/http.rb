@@ -36,9 +36,10 @@ module QcloudVod
     end
 
     def wrap(response)
-      if response.code == 200 && response.parsed_response['code'] == 0
+      if response.code == 200
         response
       else
+        # raise QcloudVod::Http::ResponseError.new(action, res) if result['Response']['Error']
         fail RequestError, response
       end
     end

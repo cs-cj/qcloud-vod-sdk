@@ -7,7 +7,6 @@ module QcloudVod
     attr_reader :origin_response
 
     def initialize(response)
-      p response
       if response.parsed_response.key?('Code')
         @code = response.parsed_response['Code']
         @message = response.parsed_response['Message']

@@ -4,19 +4,22 @@ module QcloudVod
       module TTask
 
         def describe_tasks
-          sign = authorization.get_value
-          options = { Action: 'DescribeTasks' }
-          # options.merge!({ SecretId: config.secret_id })
-          # options.merge!({ Signature: sign })
-          # options.merge!({ Timestamp: Time.now.to_i })
-          options.merge!({ Status: 'FINISH' })
+          r_method = "GET"
+          r_host = "vod.tencentcloudapi.com/"
 
-          headers = {
-              'Authorization' => sign,
-              'Content-Type' => 'application/json'
-          }
-          p sign
-          result = http.post("https://vod.tencentcloudapi.com",body: options.to_json, headers: headers)
+          options = { Action: 'DescribeTasks' }
+          options.merge!({ Status: 'FINISH' })
+          options.merge!({ SignatureMethod: 'HmacSHA1'})
+          options.merge!({ Region: ''})
+          sign = authorization.get_value(r_method,r_host,options,Time.now.to_i+86400)
+
+          options.merge!({ Signature: sign})
+
+          res = http.get("https://vod.tencentcloudapi.com/?#{options.to_query}")
+          p res.methods
+          p res.response
+          p res.body
+          ActiveSupport::HashWithIndifferentAccess.new(JSON.parse(res.body))
 
         end
       end
