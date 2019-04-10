@@ -3,11 +3,17 @@ require 'qcloud_vod/configuration'
 require 'qcloud_vod/sign'
 require 'qcloud_vod/http'
 require 'qcloud_vod/api/v1/t_task'
+require 'qcloud_vod/api/v1/t_events'
+require 'qcloud_vod/api/v1/t_media'
+
 require 'qcloud_vod/utils'
 module QcloudVod
 
   class << self
     include Api::V1::TTask
+    include Api::V1::TEvents
+    include Api::V1::TMedia
+
 
     def configure
       @configuration ||= Configuration.new

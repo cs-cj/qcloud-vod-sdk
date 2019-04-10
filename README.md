@@ -21,8 +21,20 @@ Or install it yourself as:
     $ gem install qcloud-vod-sdk
 
 ## Usage
-
-TODO: Write usage instructions here
+```ruby
+    QcloudVod.configure do |config|
+      config.secret_key = "*******"
+      config.secret_id = "************"
+    end
+   # get event list 
+   QcloudVod.pull_events
+   
+   #describe_tasks  before 3 days data 
+   QcloudVod.describe_tasks
+   
+   # get media info ,params is array max 18 
+   QcloudVod.info([fieldid]) 
+```
 
 ## Development
 
